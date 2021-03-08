@@ -1,4 +1,4 @@
-name: qmyd(全民悦动)
+name: qmyd
 on:
   workflow_dispatch:
   schedule:
