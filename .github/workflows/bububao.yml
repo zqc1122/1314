@@ -1,5 +1,5 @@
 
-name: baiduspeed(百度极速版)
+name: bububao(步步宝)
 on:
   workflow_dispatch:
   schedule:
