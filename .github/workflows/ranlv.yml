@@ -11,7 +11,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     env:
         RLURL: ${{ secrets.RLURL }}
-        RLHEARDER: ${{ secrets.RLHEADER }}
+        RLHEADER: ${{ secrets.RLHEADER }}
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 12.x
