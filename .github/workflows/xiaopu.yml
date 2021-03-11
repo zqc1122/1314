@@ -3,7 +3,7 @@ name: xiaopu(笑谱)
 on:
   workflow_dispatch:
   schedule:
-     - cron: '4,44 0-16 * * *'
+     - cron: '4,42 12-22 * * *'
   watch:
     types: started
 jobs:
