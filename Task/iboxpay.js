@@ -171,13 +171,13 @@ if (!COOKIE.refreshtokenVal) {
             CASH = $.getval("iboxpayCASH") || '0';
         }
         if ("iboxpayLIVE") {
-            LIVE = $.getval("iboxpayLIVE") || '0';
+            LIVE = $.getval("iboxpayLIVE") || '1';
         }
         if ("iboxpayphone") {
             phone = $.getval("iboxpayphone") || '0';
         }
         if ("iboxpaysms") {
-            sms = $.getval("iboxpaysms") || '0';
+            sms = $.getval("iboxpaysms") || '1';
         }
         let iboxpayCount = ($.getval('iboxpayCount') || '1') - 0;
         for (let i = 2; i <= iboxpayCount; i++) {
