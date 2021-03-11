@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        QMYD_qmydTOKEN: ${{ secrets.QMYD_qmydTOKEN }}
+        QMYD_QMYDTOKEN: ${{ secrets.QMYD_QMYDTOKEN }}
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 12.x
@@ -21,7 +21,7 @@ jobs:
         run: |
           npm install
       - name: '运行 【全民悦动】'
-        if: env.QMYD_qmydTOKEN
+        if: env.QMYD_QMYDTOKEN
         run: |
           node Task/qmyd.js
         env:
