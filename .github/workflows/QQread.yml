@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        QQ_QQREADURL: ${{ secrets.QQ_QQREADURL }}
+        QQ_QQreadURL: ${{ secrets.QQ_QQreadURL }}
         TZ: Asia/shanghai
     steps:
       - uses: actions/checkout@v1
@@ -23,7 +23,7 @@ jobs:
         run: |
           npm install
       - name: '运行 【QQ阅读】'
-        if: env.QQ_QQREADURL
+        if: env.QQ_QQreadURL
         run: |
           node Task/QQread.js
         env:
