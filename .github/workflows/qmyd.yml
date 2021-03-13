@@ -2,7 +2,7 @@ name: qmyd(全民悦动)
 on:
   workflow_dispatch:
   schedule:
-     - cron: '4,42 4-14 * * *'
+     - cron: '4,42 * * * *'
   watch:
     types: started
 jobs:
