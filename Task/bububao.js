@@ -20,6 +20,8 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.3-2 调整刮奖机制 分3个时间段刮奖
 3.4 取消限速
 3.5 优化提现
+3.8 替换为循环获取ck
+3.13 0.3的快乐回来了
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 35次以上就行   
 
@@ -134,11 +136,39 @@ function GetCookie() {
     }
     if ($request && $request.url.indexOf("profile") >= 0) {
         const bububaotokenVal = $request.headers.tokenstr;
-        if (bububaotokenVal) $.setdata(bububaotokenVal, "bububaotoken" + $.idx);
-        $.log(
-            `[${$.name + $.idx}] 获取bububaotokenVal✅: 成功,bububaotokenVal: ${bububaotokenVal}`
-        );
-        $.msg($.name + $.idx, `获取bububaotokenVal: 成功🎉`, ``);
+
+        if (bububaotokenVal) {
+            cookie()
+
+            function cookie() {
+                bodys = $.getdata('bububaotoken' + $.idx);
+                 if (bodys) {
+                    if (bodys.indexOf(bububaotokenVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] bububaotokenVal已存在✅: bububaotokenVal: ${bububaotokenVal}`
+                        );
+                        $.msg($.name + $.idx, `bububaotokenVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
+                        $.idx = 2
+                        cookie()
+                    } else {
+                        $.idx = $.idx + 1
+                        cookie()
+                    }
+                } else { 
+                        $.setdata(bububaotokenVal, "bububaotoken" + $.idx);
+                        $.log(
+                            `[${$.name + $.idx}] 获取bububaotokenVal✅: 成功,bububaotokenVal: ${bububaotokenVal}`
+                        );
+                        $.msg($.name + $.idx, `获取bububaotokenVal: 成功🎉`, ``);
+
+                        $.done();
+                };
+
+            }
+
+        }
     }
 }
 console.log(
@@ -279,16 +309,14 @@ async function all() {
         if (!COOKIE.bububaotokenVal) {
             bububaotokenVal = bububaotokenArr[i];
         }
-        header = {
-            'store': `appstore`,
+       header = {
             'tokenstr': `${bububaotokenVal}`,
-            'Connection': `keep-alive`,
-            'Accept-Encoding': `gzip, deflate, br`,
-            'version': `10`,
             'idfa': ``,
+            'ini': `21`,
+            'store': `0`,
             'Content-Type': `application/x-www-form-urlencoded`,
-            'User-Agent': `BBB/132 CFNetwork/1206 Darwin/20.1.0`,
-            'platform': `2`,
+            'platform': `1`,
+            'version': `18`,
             'imei': ``,
             'Cookie': ``,
             'Host': `bububao.duoshoutuan.com`,
@@ -1717,6 +1745,8 @@ function tixian_html(timeout = 0) {
                                     CASH = 100
                                 } else if ($.user.money >= 50 && fenshu5 > 0) {
                                     CASH = 50
+                                } else if ($.user.money >= 0.3 && $.user.day_jinbi >= 5000) {
+                                    CASH = 0.3
                                 }
                                 if (CASH != 888) {
                                     await tixian() //提现
