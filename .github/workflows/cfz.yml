@@ -1,0 +1,35 @@
+#参照ruicky/jd_sign_bot
+
+name: Github cfz
+on:
+    push:
+        branches:
+            - main
+    schedule:
+        - cron: '2,22 * * * *'
+jobs:
+    build:
+        runs-on: ubuntu-latest
+ 
+        steps:
+            - name: Checkout codes
+              uses: actions/checkout@v2
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                node-version: '12.x'
+            - name: Run
+              run: npm install
+            - run: node cfz.js
+              env:
+                cfzurl: ${{ secrets.cfzurl }}
+                cfzhd: ${{ secrets.cfzhd }}
+                sckey: ${{ secrets.sckey }}
+                cfzsbhd: ${{ secrets.cfzsbhd }}
+                PUSH_KEY: ${{ secrets.PUSH_KEY }}
+                BARK_PUSH: ${{ secrets.BARK_PUSH }}
+                TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+                TG_USER_ID: ${{ secrets.TG_USER_ID }}
+                BARK_SOUND: ${{ secrets.BARK_SOUND }}
+                DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+                DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
