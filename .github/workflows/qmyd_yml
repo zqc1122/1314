@@ -1,8 +1,9 @@
-name: qmyd
+
+name: qmyd(全民悦动)
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/30 * * * *'
+     - cron: '4,42 4-14 * * *'
   watch:
     types: started
 jobs:
@@ -10,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        QMYD_QMYDTOKEN: ${{ secrets.QMYD_QMYDTOKEN }}
+        QMYD_qmydTOKEN: ${{ secrets.QMYD_qmydTOKEN }}
+        TZ: Asia/shanghai
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 12.x
@@ -20,8 +22,8 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【全民悦动】'
-        if: env.QMYD_QMYDTOKEN
+      - name: '运行 【笑谱】'
+        if: env.QMYD_qmydTOKEN
         run: |
           node Task/qmyd.js
         env:
